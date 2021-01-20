@@ -7,15 +7,12 @@ casual.define('user', () => ({
   id: casual.uuid,
   email: casual.email,
   password,
+  first_name: casual.first_name,
+  last_name: casual.last_name,
   createdAt: casual.moment,
   updatedAt: casual.moment,
 }))
 
+const users = Array.from(Array(50), () => casual.user)
 
-const userData = []
-
-for (let i = 0; i < 20; ++i) {
-  userData.push(casual.user)
-}
-
-module.exports = userData
+module.exports = users

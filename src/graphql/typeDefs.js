@@ -2,10 +2,10 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
   type Mutation {
-    login(email: String!, password: String!): AuthReturn!
+    login(input: RegisterInput!): AuthReturn!
     register(input: RegisterInput!): AuthReturn!
     createMeeting(meeting: CreateMeetingInput): Meeting!
-    deleteMeeting(meetingId: ID!)
+    deleteMeeting(meetingId: ID!): Meeting!
   }
 
   type Query {
@@ -28,7 +28,7 @@ module.exports = gql`
   type Meeting {
     id: ID!
     creatorID: [User!]!
-    classId: [Class!]!
+    class: Class!
     time: String!
     zoom_link: String!
     createdAt: String!

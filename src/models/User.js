@@ -33,6 +33,14 @@ class User extends BaseModel {
           to: 'meetings.id',
         },
       },
+      ownedMeetings: {
+        relation: BaseModel.HasManyRelation,
+        modelClass: Meeting,
+        join: {
+          from: 'users.id',
+          to: 'meetings.creatorId',
+        },
+      },
     }
   }
 }

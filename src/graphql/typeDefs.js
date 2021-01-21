@@ -9,7 +9,6 @@ module.exports = gql`
   }
 
   type Query {
-    welcome: String!
     getOwnedMeetings(userId: ID!): [Meeting]!
     getMeetingsByUser(userId: ID!): [Meeting]!
   }
@@ -20,6 +19,8 @@ module.exports = gql`
     password: String!
     firstName: String!
     lastName: String!
+    meetings: [Meeting]
+    ownedMeetings: [Meeting]
     createdAt: String!
     updatedAt: String!
   }

@@ -4,7 +4,7 @@ module.exports = gql`
   type Mutation {
     login(input: RegisterInput!): AuthReturn!
     register(input: RegisterInput!): AuthReturn!
-    createMeeting(meeting: CreateMeetingInput): Meeting!
+    createMeeting(meeting: CreateMeetingInput!): Meeting!
     deleteMeeting(meetingId: ID!): Meeting!
   }
 
@@ -27,10 +27,10 @@ module.exports = gql`
 
   type Meeting {
     id: ID!
-    creatorID: [User!]!
+    creator: User!
     class: Class!
     time: String!
-    zoom_link: String!
+    zoom_link: String
     createdAt: String!
     updatedAt: String!
   }

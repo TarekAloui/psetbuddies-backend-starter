@@ -10,10 +10,28 @@ const getOwnedMeetings = async (obj, { userId }) => {
   }
 }
 
+const meetings = async ({ id }, params, context) => {
+  try {
+    const m = (await User.query().findOne('id', id)).$relatedQuery('ownedMeetings')
+    return m
+  } catch (error) {
+    throw new Error('ERROR: failed at getting owned meetings')
+  }
+}
+
 const getMeetingsByUser = async (obj, { userId }) => {
   try {
-    const ownedMeetings = (await User.query().findOne('id', userId)).$relatedQuery('meetings')
-    return ownedMeetings
+    const m = (await User.query().findOne('id', userId)).$relatedQuery('meetings')
+    return m
+  } catch (error) {
+    throw new Error('ERROR: failed at getting owned meetings')
+  }
+}
+
+const ownedMeetings = async ({ id }, params, context) => {
+  try {
+    const m = (await User.query().findOne('id', id)).$relatedQuery('meetings')
+    return m
   } catch (error) {
     throw new Error('ERROR: failed at getting owned meetings')
   }
@@ -25,8 +43,8 @@ const resolver = {
     getMeetingsByUser,
   },
   User: {
-    meetings: getMeetingsByUser,
-    ownedMeetings: getOwnedMeetings,
+    meetings,
+    ownedMeetings,
   },
 }
 

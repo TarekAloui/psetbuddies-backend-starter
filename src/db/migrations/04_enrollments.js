@@ -9,12 +9,10 @@ exports.up = async knex => createTableIfNotExists(knex, 'enrollments', table => 
 
   table
     .uuid('classId')
-    .notNullable()
     .references('classes.id')
 
   table
     .uuid('userId')
-    .notNullable()
     .references('users.id')
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())

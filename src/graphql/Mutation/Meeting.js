@@ -2,12 +2,7 @@ const Meeting = require('../../models/Meeting')
 
 const createMeeting = async (obj, { meeting }, context) => {
   try {
-    const { creatorId, classId, time } = meeting
-    const m = await Meeting.query().insert({
-      creatorId,
-      classId,
-      time,
-    }).returning('*')
+    const m = await Meeting.query().insert(meeting).returning('*')
     return m
   } catch (error) {
     throw new Error(`ERROR: failed at creating meeting.\n${error.message}`)

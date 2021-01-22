@@ -16,12 +16,10 @@ exports.up = async knex => createTableIfNotExists(knex, 'meetings', table => {
     .references('classes.id')
 
   table.timestamp('time')
-    .notNullable()
     .defaultTo(knex.fn.now())
 
 
   table.string('zoom_link')
-    .notNullable()
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())
   table.timestamp('updatedAt').defaultTo(knex.fn.now())
